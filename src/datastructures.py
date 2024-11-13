@@ -19,17 +19,34 @@ class FamilyStructure:
     def _generateId(self):
         return randint(0, 99999999)
 
+    
     def add_member(self, member):
-        # fill this method and update the return
-        pass
-
+        member["last_name"] = self.last_name
+        member["id"] = self._generateId()
+        self._members.append(member)
+        return member
+    
     def delete_member(self, id):
-        # fill this method and update the return
-        pass
+        for position in range(len(self._members)):
+            if self._members[position]["id"] == id:
+                self._members.pop(position)
+
+
+
+    def update_member(self, id, updates):
+        for member in self._members:               
+            if member.get('id') == id:              
+                for key, value in updates.items():  
+                    member[key] = value            
+                return member                                                      
+
 
     def get_member(self, id):
-        # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == int(id):
+                return member
+        
+        
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
